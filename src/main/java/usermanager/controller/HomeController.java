@@ -8,6 +8,10 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getRoot(){
-        return "root";
+        return "{\"user controller \" : \"/users\"," +
+                "\"user type controller \" : \"/usertypes\"," +
+                "\"swagger ui \" : \"/swagger-ui.html\"," +
+                "\"swagger doc\" : \"/v2/api-docs\"" +
+                "}";
     }
 }
