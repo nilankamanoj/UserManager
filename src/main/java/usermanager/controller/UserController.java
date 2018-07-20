@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import usermanager.model.User;
 import usermanager.service.UserService;
 
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping(path="/users")
@@ -19,7 +21,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody User addUser(@RequestBody User user) {
+    public @ResponseBody User addUser(@Valid @RequestBody User user) {
         user = userService.save(user);
         return user;
     }

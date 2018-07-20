@@ -3,11 +3,57 @@ package usermanager.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer id;
+    @NotNull
+    @Size(min=3, max = 20, message="First name should have atleast 3-20 characters")
+    @Column(length = 20, nullable = false)
+    private String firstName;
+    @NotNull
+    @Size(min=3, max = 20, message="Last name should have atleast 3-20 characters")
+    @Column(length = 20, nullable = false)
+    private String lastName;
+    @NotNull
+    @Email(message = "Invalid email address")
+    @Column(length = 100, nullable = false)
+    private String email;
+    @JsonProperty
+    @NotNull
+    @Column(nullable = false)
+    private boolean isActive;
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Column(nullable = false)
+    private Date dateOfBirth;
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Column(nullable = false)
+    private Date createdDate;
+    @NotNull
+    @Size(min=3, message="City should have atleast 3 characters")
+    @Column(length = 50, nullable = false)
+    private String city;
+    @NotNull
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(nullable = false)
+    private UserType userType;
+
+
     public Integer getId() {
         return id;
     }
@@ -80,26 +126,5 @@ public class User {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    @JsonProperty
-    private boolean isActive;
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
-    @Temporal(TemporalType.DATE)
-    private Date createdDate;
-    private String city;
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private UserType userType;
-
-
-
-
 
 }

@@ -1,10 +1,13 @@
 package usermanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import usermanager.model.UserType;
 import usermanager.service.UserTypeService;
+import javax.validation.Valid;
 
 
 @Controller
@@ -26,8 +29,8 @@ public class UserTypeController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody UserType update(@RequestBody UserType userType) {
+    public ResponseEntity<UserType> update(@Valid @RequestBody UserType userType) {
         userTypeService.save(userType);
-        return userType;
+        return new ResponseEntity<UserType>(userType,HttpStatus.OK);
     }
 }
