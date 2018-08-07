@@ -33,4 +33,11 @@ public class UserTypeController {
         userTypeService.save(userType);
         return new ResponseEntity<UserType>(userType,HttpStatus.OK);
     }
+    @RequestMapping(path="/{id}" , method = RequestMethod.DELETE)
+    public @ResponseBody
+    UserType deleteOne(@PathVariable Integer id) {
+        UserType userType = userTypeService.findOne(id);
+        userTypeService.deleteOne(id);
+        return userType;
+    }
 }

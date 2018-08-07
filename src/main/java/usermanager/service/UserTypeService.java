@@ -24,4 +24,10 @@ public class UserTypeService {
         userTypeRepository.save(userType);
         return true;
     }
+
+    public boolean deleteOne(Integer id){
+        userTypeRepository.delete(id);
+        return true;
+    }
+
 }

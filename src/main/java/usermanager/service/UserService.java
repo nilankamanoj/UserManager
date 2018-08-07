@@ -1,5 +1,6 @@
 package usermanager.service;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import usermanager.model.User;
@@ -15,6 +16,7 @@ public class UserService {
     @Autowired
     private UserTypeRepository userTypeRepository;
 
+//    private DozerBeanMapper dozerBeanMapper = new  DozerBeanMapper();
 
     public List<User> findAll(){
         List<User> users = userRepository.findAll();
@@ -41,4 +43,12 @@ public class UserService {
         userRepository.delete(id);
         return true;
     }
+
+    public User updateOne(User user){
+//        dozerBeanMapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap, fieldMapping) -> sourceFieldValue == null);
+//        dozerBeanMapper.map(user,oldUser);
+        return userRepository.saveAndFlush(user);
+    }
+
+
 }
