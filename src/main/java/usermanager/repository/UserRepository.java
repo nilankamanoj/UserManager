@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-   List<User> findAllByIsActive(Boolean isActive);
+   public List<User> findAllByIsActive(Boolean isActive);
 
     }
 

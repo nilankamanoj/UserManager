@@ -32,7 +32,12 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/users/**").hasRole("ADMIN")
                 .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/usertypes/**").hasRole("ADMIN")
+                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean

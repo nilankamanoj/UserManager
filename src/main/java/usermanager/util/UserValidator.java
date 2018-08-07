@@ -14,7 +14,7 @@ public class UserValidator {
     private UserTypeService userTypeService;
     public HashMap validate(User user){
         HashMap response = new HashMap();
-        boolean hasError = false;
+
 
 
 if(user.getFirstName()==null || user.getFirstName() == "")response.put("firstName","empty values not allowed");

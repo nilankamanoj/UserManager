@@ -34,6 +34,7 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity <?>  addUser(@RequestBody User user) {
+        System.out.println(user.getFirstName());
         HashMap err = userValidator.validate(user);
         if(err.isEmpty()) {
             return new ResponseEntity<>(new CustomResponse(200,"success",userService.save(user)), HttpStatus.OK);

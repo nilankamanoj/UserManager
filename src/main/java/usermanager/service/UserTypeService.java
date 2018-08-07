@@ -29,4 +29,11 @@ public class UserTypeService {
         return true;
     }
 
+    public List<UserType> getAllByName(String name){
+        return userTypeRepository.getAllByName(name);
+    }
+    public UserType update(UserType userType){
+        return userTypeRepository.save(userType);
+    }
+
 }
