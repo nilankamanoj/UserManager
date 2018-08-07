@@ -6,6 +6,12 @@ public class CustomResponse {
     private Object message;
     private Object data;
 
+    public CustomResponse(int status, Object message, Object data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
     public int getStatus() {
         return status;
     }

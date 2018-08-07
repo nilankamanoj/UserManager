@@ -1,9 +1,11 @@
 package usermanager.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -37,10 +39,9 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(nullable = false)
     private Date dateOfBirth;
+
     @Temporal(TemporalType.DATE)
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    @Column(nullable = false)
+    @CreationTimestamp
     private Date createdDate;
     @NotNull
     @Size(min=3, message="City should have atleast 3 characters")

@@ -5,15 +5,11 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import usermanager.model.User;
-import usermanager.model.UserType;
 import usermanager.service.UserTypeService;
-
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 @Component
-public class AddUserValidator {
+public class UserValidator {
     @Autowired
     private UserTypeService userTypeService;
     public HashMap validate(User user){

@@ -20,9 +20,8 @@ public class UserTypeService {
         return userTypeRepository.findOne(id);
     }
 
-    public boolean save(UserType userType){
-        userTypeRepository.save(userType);
-        return true;
+    public UserType save(UserType userType){
+        return userTypeRepository.save(userType);
     }
 
     public boolean deleteOne(Integer id){
