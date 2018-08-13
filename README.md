@@ -24,7 +24,7 @@ mvn spring-boot:run
 ## Run by JAR executable.
 Copy paste new **application.properties** to **target/** folder to inject configurations in to executable. run:
 ```sh
-jar uf  usermanager-1.0-SNAPSHOT.jar*  application.properties
+jar uf  usermanager-1.0-SNAPSHOT.jar  application.properties
 java -jar usermanager-1.0-SNAPSHOT.jar
 ```
 After initial run, set **spring.jpa.hibernate.ddl-auto=none** and save/ inject application.properties file and restart the server.
