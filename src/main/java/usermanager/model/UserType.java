@@ -8,17 +8,17 @@ import javax.validation.constraints.Size;
 public class UserType {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
-    @Size(min=2, message="Name should have atleast 2 characters")
+    @Size(min = 2, message = "Name should have atleast 2 characters")
     @Column(length = 20, nullable = false)
     private String name;
     @NotNull
-    @Size(min=5, message="Description should have atleast 5 characters")
-    @Column(nullable = false, columnDefinition="TEXT")
+    @Size(min = 5, message = "Description should have atleast 5 characters")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
-    
+
     public Integer getId() {
         return id;
     }
@@ -43,5 +43,4 @@ public class UserType {
         this.description = description;
     }
 
-    
 }

@@ -5,7 +5,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,14 +15,14 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
-    @Size(min=3, max = 20, message="First name should have atleast 3-20 characters")
+    @Size(min = 3, max = 20, message = "First name should have atleast 3-20 characters")
     @Column(length = 20, nullable = false)
     private String firstName;
     @NotNull
-    @Size(min=3, max = 20, message="Last name should have atleast 3-20 characters")
+    @Size(min = 3, max = 20, message = "Last name should have atleast 3-20 characters")
     @Column(length = 20, nullable = false)
     private String lastName;
     @NotNull
@@ -39,20 +38,19 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(nullable = false)
     private Date dateOfBirth;
-
     @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date createdDate;
     @NotNull
-    @Size(min=3, message="City should have atleast 3 characters")
+    @Size(min = 3, message = "City should have atleast 3 characters")
     @Column(length = 50, nullable = false)
     private String city;
     @NotNull
     @ManyToOne
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(nullable = false)
+    
     private UserType userType;
-
 
     public Integer getId() {
         return id;
@@ -117,7 +115,6 @@ public class User {
     public void setCity(String city) {
         this.city = city;
     }
-
 
     public UserType getUserType() {
         return userType;

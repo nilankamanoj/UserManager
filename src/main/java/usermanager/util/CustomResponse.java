@@ -1,6 +1,5 @@
 package usermanager.util;
 
-
 public class CustomResponse {
     private int status;
     private Object message;

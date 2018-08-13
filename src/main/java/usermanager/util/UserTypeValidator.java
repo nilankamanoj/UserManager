@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import usermanager.model.UserType;
 import usermanager.service.UserTypeService;
-
 import java.util.HashMap;
 
 @Component
@@ -14,17 +13,22 @@ public class UserTypeValidator {
 
     public HashMap validate(UserType userType) {
         HashMap response = new HashMap();
-        if(userType.getName()==null|| userType.getName() =="")response.put("name","empty values not allowed");
-        else if(!userTypeService.getAllByName(userType.getName()).isEmpty()){
-            UserType userType1 = userTypeService.getAllByName(userType.getName()).get(0) ;
+    
+        if (userType.getName() == null || userType.getName() == "")
+            response.put("name", "empty values not allowed");
+        else if (userType.getName().length() > 20 || userType.getName().length() < 3)
+            response.put("name", "length beyond 3-20 not allowed");
+        else if (!userTypeService.getAllByName(userType.getName()).isEmpty()) {
+            UserType userType1 = userTypeService.getAllByName(userType.getName()).get(0);
 
-            if(userType1.getId() != userType.getId())response.put("name","duplicate names not allowed");
+            if (userType1.getId() != userType.getId())
+                response.put("name", "duplicate names not allowed");
         }
-                if(userType.getDescription()==null|| userType.getDescription() =="")response.put("description","empty values not allowed");
 
+        if (userType.getDescription() == null || userType.getDescription() == "")
+            response.put("description", "empty values not allowed");
 
         return response;
-        }
-
+    }
 
 }
